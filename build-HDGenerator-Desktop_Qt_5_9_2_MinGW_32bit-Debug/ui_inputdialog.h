@@ -26,11 +26,12 @@ QT_BEGIN_NAMESPACE
 class Ui_InputDialog
 {
 public:
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QPlainTextEdit *plainTextEdit;
     QHBoxLayout *horizontalLayout;
     QPushButton *saveButton;
+    QPushButton *defaultButton;
     QPushButton *okButton;
     QPushButton *cancelButton;
 
@@ -39,30 +40,35 @@ public:
         if (InputDialog->objectName().isEmpty())
             InputDialog->setObjectName(QStringLiteral("InputDialog"));
         InputDialog->resize(400, 300);
-        widget = new QWidget(InputDialog);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 10, 381, 281));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(InputDialog);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 10, 381, 281));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        plainTextEdit = new QPlainTextEdit(widget);
+        plainTextEdit = new QPlainTextEdit(layoutWidget);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
 
         verticalLayout->addWidget(plainTextEdit);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        saveButton = new QPushButton(widget);
+        saveButton = new QPushButton(layoutWidget);
         saveButton->setObjectName(QStringLiteral("saveButton"));
 
         horizontalLayout->addWidget(saveButton);
 
-        okButton = new QPushButton(widget);
+        defaultButton = new QPushButton(layoutWidget);
+        defaultButton->setObjectName(QStringLiteral("defaultButton"));
+
+        horizontalLayout->addWidget(defaultButton);
+
+        okButton = new QPushButton(layoutWidget);
         okButton->setObjectName(QStringLiteral("okButton"));
 
         horizontalLayout->addWidget(okButton);
 
-        cancelButton = new QPushButton(widget);
+        cancelButton = new QPushButton(layoutWidget);
         cancelButton->setObjectName(QStringLiteral("cancelButton"));
 
         horizontalLayout->addWidget(cancelButton);
@@ -80,6 +86,7 @@ public:
     {
         InputDialog->setWindowTitle(QApplication::translate("InputDialog", "Dialog", Q_NULLPTR));
         saveButton->setText(QApplication::translate("InputDialog", "Save", Q_NULLPTR));
+        defaultButton->setText(QApplication::translate("InputDialog", "Default", Q_NULLPTR));
         okButton->setText(QApplication::translate("InputDialog", "Ok", Q_NULLPTR));
         cancelButton->setText(QApplication::translate("InputDialog", "Cancel", Q_NULLPTR));
     } // retranslateUi

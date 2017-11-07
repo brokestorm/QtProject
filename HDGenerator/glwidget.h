@@ -4,6 +4,11 @@
 
 #include <QOpenGLFunctions>
 #include <QOpenGLWidget>
+#include <QFile>
+#include <QMessageBox>
+#include <QDir>
+#include <QFileDialog>
+#include <QTextStream>
 
 class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions
 {
@@ -11,7 +16,9 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions
 
 public:
     explicit GLWidget(QWidget *parent);
-
+    void readFile();
+    std::vector<int> *training_Image;
+    int size_x, size_y, size_z;
 protected:
     void initializeGL() Q_DECL_OVERRIDE;
     void paintGL() Q_DECL_OVERRIDE;

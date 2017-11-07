@@ -6,32 +6,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    config = "/Config";
+    config = "Config";
+    training_Image = new std::vector<int>();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete training_Image;
 }
 
 void MainWindow::on_Open_file_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open file"), QDir::homePath(), "All files (*.*);;SGEMS files (*.sgems);; Text files (*.txt) ;; CSV files (*.csv)");
-    QFile trainingImage(filename);
-    QFileInfo file(filename);
-
-    if (!trainingImage.open(QIODevice::ReadOnly | QFile::Text)) {
-        QMessageBox::warning(this, "Open file", "File not openned");
-        return;
-    }
-    QTextStream in(&trainingImage);
-    QString ext = file.suffix();
-
-    if (ext == ".sgems" || ext == ".SGEMS" || ext == ".txt" || ext == ".TXT") {
-    in >> size_x >> size_y >> size_z;
-    trainingImage.close();
-    }
-
+    connect(ui->Open_file, SIGNAL(triggered(bool)), ui->openGLWidget, SLOT(repaint()));
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -40,32 +27,30 @@ void MainWindow::on_actionExit_triggered()
 }
 
 void MainWindow::on_Set_input_parameters_triggered()
-{   QFile file("/Config/template.txt");
-    if(!file.exists()){
-        QDir dir(config);
-        if (!dir.exists()) {
-            dir.mkpath(config);
-        }
+{   QDir dir;
+    dir.setCurrent(config);
+    if (!dir.exists()){
+        dir.mkpath(config);
+    }
+    QFile file("template.txt");
+    if(!file.open(QIODevice::ReadOnly | QFile::Text)){
         QMessageBox::warning(this, "template.txt", "Template not found. A Default text will be set ");
-        QString path = dir.path();
-        dir.setCurrent(config);
         file.setFileName("template.txt");
-        dir.setCurrent(path);
-        file.open(QIODevice::WriteOnly | QFile::Text);
         parametersText = "TESTE\n4\nX\nY\nZ\nfacies\n";
+        file.open(QIODevice::WriteOnly | QFile::Text);
         QTextStream out(&file);
         out << parametersText;
         file.flush();
         file.close();
-        inputDialog = new InputDialog(this, parametersText);
+        inputDialog = new InputDialog(this, parametersText, config);
         inputDialog->show();
         return;
     }
-    file.open(QIODevice::WriteOnly | QFile::Text);
+    QMessageBox::warning(this, "ue", "que que ove");
     QTextStream in(&file);
     parametersText = in.readAll();
     file.close();
 
-    inputDialog = new InputDialog(this, parametersText);
+    inputDialog = new InputDialog(this, parametersText, config);
     inputDialog->show();
 }

@@ -8,6 +8,7 @@
 #include <QTextStream>
 #include <QFileInfo>
 #include "inputdialog.h"
+#include <vector>
 
 namespace Ui {
 class MainWindow;
@@ -23,6 +24,7 @@ public:
     int size_x, size_y, size_z;
     QString parametersText;
     QString config;
+    std::vector <int>* training_Image;
 
 private slots:
     void on_Open_file_triggered();

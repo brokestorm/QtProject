@@ -27,13 +27,11 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     glwidget.cpp \
-    trainingimage.cpp \
     inputdialog.cpp
 
 HEADERS += \
         mainwindow.h \
     glwidget.h \
-    trainingimage.h \
     inputdialog.h
 
 FORMS += \
