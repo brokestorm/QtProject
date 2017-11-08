@@ -18,7 +18,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Open_file_triggered()
 {
-    connect(ui->Open_file, SIGNAL(triggered(bool)), ui->openGLWidget, SLOT(repaint()));
+    QDir dir;
+    QString file = QFileDialog::getOpenFileName(this, tr("Open file"), dir.path(), "All files (*.*);;SGEMS files (*.sgems);; Text files (*.txt) ;; CSV files (*.csv)");
+    this->ui->openGLWidget->filename = file;
+    this->ui->openGLWidget->readFile();
+    this->ui->openGLWidget->repaint();
 }
 
 void MainWindow::on_actionExit_triggered()
