@@ -6,23 +6,34 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    trainingImage = new TrainingImage();
+    ui->openGLWidget->setTrainingImage(trainingImage);
     config = "Config";
-    training_Image = new std::vector<int>();
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete training_Image;
+    delete inputDialog;
+    delete trainingImage;
 }
 
-void MainWindow::on_Open_file_triggered()
+void MainWindow::on_Open_File_triggered()
 {
     QDir dir;
-    QString file = QFileDialog::getOpenFileName(this, tr("Open file"), dir.path(), "All files (*.*);;SGEMS files (*.sgems);; Text files (*.txt) ;; CSV files (*.csv)");
-    this->ui->openGLWidget->filename = file;
-    this->ui->openGLWidget->readFile();
-    this->ui->openGLWidget->repaint();
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open file"), dir.path(), "All files (*.*);;SGEMS files (*.sgems);; Text files (*.txt) ;; CSV files (*.csv)");
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly | QFile::Text)) {
+        QMessageBox::warning(this, "Open File", "File not openned");
+        file.close();
+        return;
+    }
+    file.close();
+    trainingImage->setFileName(filename);
+    trainingImage->read();
+
+    ui->openGLWidget->repaint();
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -30,7 +41,7 @@ void MainWindow::on_actionExit_triggered()
     QApplication::quit();
 }
 
-void MainWindow::on_Set_input_parameters_triggered()
+void MainWindow::on_Set_Output_Parameters_triggered()
 {   QDir dir;
     dir.setCurrent(config);
     if (!dir.exists()){
@@ -57,9 +68,4 @@ void MainWindow::on_Set_input_parameters_triggered()
 
     inputDialog = new InputDialog(this, parametersText, config);
     inputDialog->show();
-}
-
-void MainWindow::on_verticalScrollBar_valueChanged(int value)
-{
-    //connect(this, value, ui->openGLWidget, )
 }

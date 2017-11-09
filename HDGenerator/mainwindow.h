@@ -7,8 +7,11 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include <QFileInfo>
-#include "inputdialog.h"
 #include <vector>
+
+#include "inputdialog.h"
+#include "trainingimage.h"
+#include "loadingdialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,23 +24,24 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    int size_x, size_y, size_z;
+
+
+private:
     QString parametersText;
     QString config;
-    std::vector <int>* training_Image;
+
 
 private slots:
-    void on_Open_file_triggered();
 
+    void on_Open_File_triggered();
     void on_actionExit_triggered();
-
-    void on_Set_input_parameters_triggered();
-
-    void on_verticalScrollBar_valueChanged(int value);
+    void on_Set_Output_Parameters_triggered();
 
 private:
     Ui::MainWindow *ui;
+    TrainingImage *trainingImage;
     InputDialog *inputDialog;
+    LoadingDialog *loadingDialog;
 };
 
 #endif // MAINWINDOW_H

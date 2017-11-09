@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>826</width>
-    <height>587</height>
+    <width>919</width>
+    <height>693</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -20,182 +23,107 @@
    <string>HD Generator</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QSplitter" name="splitter_10">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>811</width>
-      <height>501</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-    <widget class="GLWidget" name="openGLWidget">
-     <property name="minimumSize">
-      <size>
-       <width>100</width>
-       <height>100</height>
-      </size>
-     </property>
-    </widget>
-    <widget class="QSplitter" name="splitter_9">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <widget class="QSplitter" name="splitter_8">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <layout class="QFormLayout" name="formLayout_2">
+    <item row="0" column="0">
+     <widget class="GLWidget" name="openGLWidget">
+      <property name="enabled">
+       <bool>true</bool>
       </property>
-      <widget class="QLabel" name="simulationGridlabel">
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Simulation Grid&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QSplitter" name="splitter_7">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <widget class="QSplitter" name="splitter_5">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <widget class="QSplitter" name="splitter">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;x0:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
-         <widget class="QSpinBox" name="sg_x0_Box">
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>50</width>
-            <height>20</height>
-           </size>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QSplitter" name="splitter_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;y0:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
-         <widget class="QSpinBox" name="sg_y0_Box">
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>50</width>
-            <height>20</height>
-           </size>
-          </property>
-         </widget>
-        </widget>
-       </widget>
-       <widget class="QSplitter" name="splitter_6">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <widget class="QSplitter" name="splitter_3">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Width:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
-         <widget class="QSpinBox" name="sg_width_Box">
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>50</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="baseSize">
-           <size>
-            <width>100</width>
-            <height>100</height>
-           </size>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QSplitter" name="splitter_4">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Height:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
-         <widget class="QSpinBox" name="sg_height_Box">
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>50</width>
-            <height>20</height>
-           </size>
-          </property>
-         </widget>
-        </widget>
-       </widget>
-      </widget>
-     </widget>
-     <widget class="QPushButton" name="generate_Button">
-      <property name="text">
-       <string>Generate</string>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>800</width>
+        <height>600</height>
+       </size>
+      </property>
+      <property name="cursor">
+       <cursorShape>CrossCursor</cursorShape>
+      </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
       </property>
      </widget>
-    </widget>
-    <widget class="QScrollBar" name="verticalScrollBar">
-     <property name="maximumSize">
-      <size>
-       <width>20</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
-   </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="maximumSize">
+       <size>
+        <width>120</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Simulation Grid</string>
+      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>x0:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="spinBox"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Width:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="spinBox_3"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>y0:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="spinBox_2"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Height</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QSpinBox" name="spinBox_4"/>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>826</width>
+     <width>919</width>
      <height>21</height>
     </rect>
    </property>
@@ -204,14 +132,14 @@
      <string>File</string>
     </property>
     <addaction name="separator"/>
-    <addaction name="Open_file"/>
+    <addaction name="Open_File"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
      <string>Edit</string>
     </property>
-    <addaction name="Set_input_parameters"/>
+    <addaction name="Set_iput_parameters"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -233,15 +161,15 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="Open_file"/>
+   <addaction name="Open_File"/>
   </widget>
-  <action name="Open_file">
+  <action name="Open_File">
    <property name="icon">
     <iconset>
      <normaloff>img/openfile.png</normaloff>img/openfile.png</iconset>
    </property>
    <property name="text">
-    <string>Open file</string>
+    <string>Open File</string>
    </property>
   </action>
   <action name="actionExit">
@@ -249,7 +177,7 @@
     <string>Exit</string>
    </property>
   </action>
-  <action name="Set_input_parameters">
+  <action name="Set_iput_parameters">
    <property name="text">
     <string>Set Output Parameters</string>
    </property>

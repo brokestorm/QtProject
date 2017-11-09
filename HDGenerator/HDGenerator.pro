@@ -27,16 +27,21 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     glwidget.cpp \
-    inputdialog.cpp
+    inputdialog.cpp \
+    trainingimage.cpp \
+    loadingdialog.cpp
 
 HEADERS += \
         mainwindow.h \
     glwidget.h \
-    inputdialog.h
+    inputdialog.h \
+    trainingimage.h \
+    loadingdialog.h
 
 FORMS += \
         mainwindow.ui \
-    inputdialog.ui
+    inputdialog.ui \
+    loadingdialog.ui
 
 RESOURCES += \
     resources.qrc

@@ -14,20 +14,19 @@
 #include <vector>
 #include <qDebug>
 
+#include "trainingimage.h"
+
 class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions
 {
     Q_OBJECT
 
 public:
-    bool isPainted;
+
     explicit GLWidget(QWidget *parent);
-    void readFile();
-    QString filename;
-    std::vector<int> *training_Image;
-    int size_x, size_y, size_z;
-    void paint2DTrainingImage();
-    int actualDepth;
-    int width, height, facies;
+    void paintTrainingImage();
+    void setTrainingImage(TrainingImage *ti);
+private:
+    TrainingImage *ti;
 
 protected:
     void initializeGL() Q_DECL_OVERRIDE;
