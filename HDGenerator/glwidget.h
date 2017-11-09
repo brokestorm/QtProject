@@ -10,6 +10,7 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include <QPainter>
+#include <QColor>
 #include <vector>
 #include <qDebug>
 
@@ -26,7 +27,7 @@ public:
     int size_x, size_y, size_z;
     void paint2DTrainingImage();
     int actualDepth;
-    int scale, width, height;
+    int width, height, facies;
 
 protected:
     void initializeGL() Q_DECL_OVERRIDE;

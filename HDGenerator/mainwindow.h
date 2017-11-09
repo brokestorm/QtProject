@@ -33,6 +33,8 @@ private slots:
 
     void on_Set_input_parameters_triggered();
 
+    void on_verticalScrollBar_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
     InputDialog *inputDialog;

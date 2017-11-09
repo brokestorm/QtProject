@@ -58,3 +58,8 @@ void MainWindow::on_Set_input_parameters_triggered()
     inputDialog = new InputDialog(this, parametersText, config);
     inputDialog->show();
 }
+
+void MainWindow::on_verticalScrollBar_valueChanged(int value)
+{
+    //connect(this, value, ui->openGLWidget, )
+}

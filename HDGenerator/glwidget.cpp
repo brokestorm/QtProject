@@ -6,9 +6,12 @@ QOpenGLWidget(parent)
     training_Image = new std::vector<int>();
     isPainted = false;
     actualDepth = 0;
-    scale = 0;
     width = 0;
     height = 0;
+    size_x = 800;
+    size_y = 600;
+    facies = 0;
+
 }
 
 void GLWidget::readFile()
@@ -16,6 +19,14 @@ void GLWidget::readFile()
     QDir dir;
     QFile trainingImage(filename);
     QFileInfo file(filename);
+    if(isPainted){
+        int j = 0;
+        while(j < size_x * size_y * size_z) {
+            training_Image->pop_back();
+            j++;
+        }
+        facies = 0;
+    }
 
     if (!trainingImage.open(QIODevice::ReadOnly | QFile::Text)) {
         QMessageBox::warning(this, "Open file", "File not openned");
@@ -30,19 +41,18 @@ void GLWidget::readFile()
         QString entries1, entries2;
         in >> entries1;
         in >> entries2;
-        int n;
+        float n;
+        int k;
         int i = 0;
         while(i < size_x * size_y * size_z) {
             in >> n;
-            training_Image->push_back(n);
+            if (n > facies - 1){
+                facies = n + 1;
+            }
+            k = (int)n;
+            training_Image->push_back(k);
             i++;
         }
-    }
-    if (size_x > size_y){
-        scale = size_x / width;
-    }
-    else{
-        scale = size_y/ height;
     }
     isPainted = true;
 }
@@ -50,13 +60,18 @@ void GLWidget::readFile()
 void GLWidget::paint2DTrainingImage()
 {
     QPainter painter(this);
-    for(int j = size_y; j > 0; j--){
+    int color = 255 / (facies - 1);
+
+    painter.setWindow(0,0,size_x,size_y);
+    //painter.scale(scale,scale);
+    for(int j = 1; j <= size_y; j++){
         for(int i = 0; i < size_x; i++){
-            painter.setBrush(Qt::black);
-            if(training_Image->at(i + ((size_y - j) * size_x) + ((actualDepth) * (size_x * size_y))) == 1){
-                painter.setBrush(Qt::white);
+            for(int w = 0; w < facies; w++) {
+                if(training_Image->at(i + ((size_y - j) * size_x) + ((actualDepth) * (size_x * size_y))) == w){
+                    painter.setBrush(QColor(color * w, color * w, color * w));
+                }
             }
-            painter.fillRect(i*2, j*2, 2, 2, painter.brush());
+            painter.fillRect(i, j, 1, 1, painter.brush());
         }
     }
 
@@ -69,9 +84,10 @@ void GLWidget::initializeGL()
 }
 
 void GLWidget::paintGL()
-{   if(isPainted){
-        qDebug() << width;
-        qDebug() << height;
+{
+    initializeOpenGLFunctions();
+
+    if(isPainted){
         paint2DTrainingImage();
     }
 }
@@ -82,12 +98,6 @@ void GLWidget::resizeGL(int w, int h)
     glViewport(0,0,w,h);
     width = w;
     height = h;
-    if (size_x > size_y){
-        scale = size_x / w;
-    }
-    else{
-        scale = size_y/ h;
-    }
 
     //glMatrixMode(GL_PROJECTION);
     //glLoadIdentity();
