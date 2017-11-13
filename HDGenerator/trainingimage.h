@@ -16,13 +16,13 @@ public:
     ~TrainingImage();
 
     //getting Functions
-    int width() const;
-    int height() const;
-    int facies() const;
-    int actualDepth() const;
+    int getWidth() const;
+    int getHeight() const;
+    int getFacies() const;
+    int getActualDepth() const;
     int isLoaded() const;
-    int depth() const;
-    QString file() const;
+    int getDepth() const;
+    QString getFileName() const;
 
     //setting Functions
     void setIsLoaded(bool l);
@@ -37,12 +37,12 @@ public:
 
 private:
     bool _isLoaded;
-    int _actualDepth;
-    int _width;
-    int _height;
-    int _facies;
-    int _depth;
-    QString _file;
+    int actualDepth;
+    int width;
+    int height;
+    int facies;
+    int depth;
+    QString file;
 };
 
 #endif // TRAININGIMAGE_H

@@ -1,14 +1,20 @@
 #include "inputdialog.h"
 #include "ui_inputdialog.h"
 
-InputDialog::InputDialog(QWidget *parent, QString parametersText, QString config) :
+InputDialog::InputDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::InputDialog)
 {
     ui->setupUi(this);
-    text = parametersText;
-    directory = config;
-    ui->plainTextEdit->setPlainText(text);
+    ui->CoordXRadioButton->toggled(true);
+    ui->CoordYRadioButton->toggled(true);
+    ui->CoordZRadioButton->toggled(true);
+    ui->faciesRadioButton->toggled(true);
+    ui->HDAmountRadioButton->toggled(true);
+    ui->titleRadioButton->toggled(true);
+    setDirName("Config");
+    setTitle("TESTE");
+    setFileName("predef_output.txt");
 }
 
 InputDialog::~InputDialog()
@@ -16,59 +22,128 @@ InputDialog::~InputDialog()
     delete ui;
 }
 
+void InputDialog::setDirName(QString n)
+{
+    dirName = n;
+}
+
+QString InputDialog::getDirName()
+{
+    return dirName;
+}
+
+void InputDialog::setTitle(QString t)
+{
+    title = t;
+}
+
+QString InputDialog::getTitle()
+{
+    return title;
+}
+
+void InputDialog::setFileName(QString f)
+{
+    filename = f;
+}
+
+QString InputDialog::getFileName()
+{
+    return filename;
+}
+
+void InputDialog::setIsFacies(bool toggled)
+{
+    _isFacies = toggled;
+}
+
+bool InputDialog::IsFacies()
+{
+    return _isFacies;
+}
+
+void InputDialog::setIsCoordX(bool toggled)
+{
+    _isCoordX = toggled;
+}
+
+bool InputDialog::IsCoordX()
+{
+    return _isCoordX;
+}
+
+void InputDialog::setIsCoordY(bool toggled)
+{
+    _isCoordY = toggled;
+}
+
+bool InputDialog::IsCoordY()
+{
+    return _isCoordY;
+}
+
+void InputDialog::setIsCoordZ(bool toggled)
+{
+    _isCoordZ = toggled;
+}
+
+bool InputDialog::IsCoordZ()
+{
+    return _isCoordZ;
+}
+
+void InputDialog::setIsTitle(bool toggled)
+{
+    _isTitle = toggled;
+}
+
+bool InputDialog::IsTitle()
+{
+    return _isTitle;
+}
+
+void InputDialog::setIsHdAmount(bool toggled)
+{
+    _isHdAmount = toggled;
+}
+
+bool InputDialog::IsHdAmount()
+{
+    return _isHdAmount;
+}
+
 void InputDialog::on_saveButton_clicked()
 {
-    QDir dir;
-    dir.setCurrent(directory);
-    QFile file("template.txt");
-    QString _text;
-    if(!file.open(QFile::WriteOnly | QFile::Text)){
-        QMessageBox::warning(this, "Template", "File not found ");
-        InputDialog::close();
-    }
-    QTextStream out(&file);
-    _text =  ui->plainTextEdit->toPlainText();
-    out << _text;
-    file.flush();
-    file.close();
+
 }
 
 void InputDialog::on_cancelButton_clicked()
 {
-    QDir dir;
-    dir.setCurrent(directory);
-    QFile file("template.txt");
-    if(!file.open(QFile::WriteOnly | QFile::Text)){
-        InputDialog::close();
-    }
-    QString _text;
-    QTextStream out(&file);
-    _text =  text;
-    out << text;
-    file.flush();
-    file.close();
-    InputDialog::close();
+
 }
 
 void InputDialog::on_okButton_clicked()
 {
-    QDir dir;
-    dir.setCurrent(directory);
-    QFile file("template.txt");
-    QString _text;
-    if(!file.open(QFile::WriteOnly | QFile::Text)){
-        QMessageBox::warning(this, "Template", "File not found ");
-        InputDialog::close();
-    }
-    QTextStream out(&file);
-    _text =  ui->plainTextEdit->toPlainText();
-    out << _text;
-    file.flush();
-    file.close();
-    InputDialog::close();
+
 }
 
 void InputDialog::on_defaultButton_clicked()
 {
-    ui->plainTextEdit->setPlainText("TESTE\n4\nX\nY\nZ\nfacies\n");
+    setTitle("TESTE");
+    ui->CoordXRadioButton->toggled(true);
+    ui->CoordYRadioButton->toggled(true);
+    ui->CoordZRadioButton->toggled(true);
+    ui->faciesRadioButton->toggled(true);
+    ui->HDAmountRadioButton->toggled(true);
+    ui->titleRadioButton->toggled(true);
+}
+
+void InputDialog::on_faciesRadioButton_toggled(bool checked)
+{
+
+}
+
+void InputDialog::on_titleRadioButton_toggled(bool checked)
+{
+
 }

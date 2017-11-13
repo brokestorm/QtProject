@@ -12,6 +12,7 @@
 #include "inputdialog.h"
 #include "trainingimage.h"
 #include "loadingdialog.h"
+#include "harddata.h"
 
 namespace Ui {
 class MainWindow;
@@ -25,12 +26,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-
-private:
-    QString parametersText;
-    QString config;
-
-
 private slots:
 
     void on_Open_File_triggered();
@@ -38,6 +33,7 @@ private slots:
     void on_Set_Output_Parameters_triggered();
 
 private:
+    HardData *hardData;
     Ui::MainWindow *ui;
     TrainingImage *trainingImage;
     InputDialog *inputDialog;

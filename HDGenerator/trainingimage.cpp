@@ -3,8 +3,8 @@
 TrainingImage::TrainingImage()
 {
     matrix = new std::vector<int>();
-    setWidth(0);
-    setHeight(0);
+    setWidth(1);
+    setHeight(1);
     setDepth(0);
     setActualDepth(0);
     setFacies(0);
@@ -16,24 +16,24 @@ TrainingImage::~TrainingImage()
     delete matrix;
 }
 
-int TrainingImage::width() const
+int TrainingImage::getWidth() const
 {
-    return _width;
+    return width;
 }
 
-int TrainingImage::height() const
+int TrainingImage::getHeight() const
 {
-    return _height;
+    return height;
 }
 
-int TrainingImage::facies() const
+int TrainingImage::getFacies() const
 {
-    return _facies;
+    return facies;
 }
 
-int TrainingImage::actualDepth() const
+int TrainingImage::getActualDepth() const
 {
-    return _actualDepth;
+    return actualDepth;
 }
 
 int TrainingImage::isLoaded() const
@@ -41,14 +41,14 @@ int TrainingImage::isLoaded() const
     return _isLoaded;
 }
 
-int TrainingImage::depth() const
+int TrainingImage::getDepth() const
 {
-    return _depth;
+    return depth;
 }
 
-QString TrainingImage::file() const
+QString TrainingImage::getFileName() const
 {
-    return _file;
+    return file;
 }
 
 void TrainingImage::setIsLoaded(bool l)
@@ -58,43 +58,43 @@ void TrainingImage::setIsLoaded(bool l)
 
 void TrainingImage::setActualDepth(int aDepth)
 {
-    _actualDepth = aDepth;
+    actualDepth = aDepth;
 }
 
 void TrainingImage::setFacies(int f)
 {
-    _facies = f;
+    facies = f;
 }
 
 void TrainingImage::setWidth(int w)
 {
-    _width = w;
+    width = w;
 }
 
 void TrainingImage::setHeight(int h)
 {
-    _height = h;
+    height = h;
 }
 
 void TrainingImage::setDepth(int d)
 {
-    _depth = d;
+    depth = d;
 }
 
 void TrainingImage::setFileName(QString f)
 {
-    _file = f;
+    file = f;
 }
 
 void TrainingImage::read()
 {
     QDir dir;
-    QFile ti_file(file());
-    QFileInfo ifile(file());
+    QFile ti_file(getFileName());
+    QFileInfo ifile(getFileName());
 
     if(isLoaded()){
         int j = 0;
-        while(j < width() * height() * depth()) {
+        while(j < getWidth() * getHeight() * getDepth()) {
             matrix->pop_back();
             j++;
         }
@@ -122,9 +122,9 @@ void TrainingImage::read()
         float n;
         int k;
         int i = 0;
-        while(i < width() * height() * depth()) {
+        while(i < getWidth() * getHeight() * getDepth()) {
             in >> n;
-            if (n > facies() - 1){
+            if (n > getFacies() - 1){
                 setFacies(n + 1);
             }
             k = (int)n;

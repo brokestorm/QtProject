@@ -13,8 +13,12 @@
 #include <QColor>
 #include <vector>
 #include <qDebug>
+#include <QMouseEvent>
+#include <QGraphicsScene>
+#include <QGraphicsEllipseItem>
 
 #include "trainingimage.h"
+#include "harddata.h"
 
 class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions
 {
@@ -25,8 +29,17 @@ public:
     explicit GLWidget(QWidget *parent);
     void paintTrainingImage();
     void setTrainingImage(TrainingImage *ti);
+    void setHardData(HardData *hd);
+    void mouseMoveEvent(QMouseEvent *event);
+
+    bool isCircleSelection();
+    void setIsCircleSelection(bool selected);
+
 private:
     TrainingImage *ti;
+    HardData *hd;
+    bool _isCircleSelection;
+    QPoint cursor;
 
 protected:
     void initializeGL() Q_DECL_OVERRIDE;

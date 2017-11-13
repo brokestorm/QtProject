@@ -29,14 +29,16 @@ SOURCES += \
     glwidget.cpp \
     inputdialog.cpp \
     trainingimage.cpp \
-    loadingdialog.cpp
+    loadingdialog.cpp \
+    harddata.cpp
 
 HEADERS += \
         mainwindow.h \
     glwidget.h \
     inputdialog.h \
     trainingimage.h \
-    loadingdialog.h
+    loadingdialog.h \
+    harddata.h
 
 FORMS += \
         mainwindow.ui \
