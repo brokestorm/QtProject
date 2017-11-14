@@ -46,6 +46,45 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
     //qDebug() << p.x() << " , " << p.y();
 }
 
+void GLWidget::mouseReleaseEvent(QMouseEvent *event)
+{   int f;
+    if(event->button() == Qt::LeftButton && ti->isLoaded()){
+        int coordx = (int)(event->x() * ti->getWidth()/this->width());
+        int coordy = (int) (event->y() * ti->getHeight()/this->height());
+        //qDebug() << coordx << coordy;
+        f = ti->getFacie(coordx, coordy, 0);
+        paintHDSelected(f, coordx, coordy);
+        hd->add(f, coordx, coordy);
+        //qDebug() << "number of hd: " << hd->getAmount();
+        //qDebug() << "facie selected: " << f;
+
+    }
+
+
+}
+
+void GLWidget::paintHDSelected(int f, int coordx, int coordy)
+{
+    QPainter painter(this);
+    painter.setWindow(0,0,ti->getWidth(),ti->getHeight());
+
+    int color = 255 / (ti->getFacies() - 1);
+    painter.setBrush( QColor(color * f , color * (ti->getFacies() - f - 1) , 0) );
+    painter.fillRect(coordx, coordy, 1, 1, painter.brush());
+}
+
+void GLWidget::paintAllHDSelected()
+{
+    std::vector< std::pair<int, int> > *coords = hd->getCoords();
+    std::vector<int> *facies = hd->getFacies();
+
+    auto et = facies->begin();
+    for(auto it = coords->begin(); it != coords->end(); it++, et++){
+        paintHDSelected(*et, (*it).first, (*it).second);
+    }
+
+}
+
 bool GLWidget::isCircleSelection()
 {
     return _isCircleSelection;
@@ -70,6 +109,7 @@ void GLWidget::paintGL()
     if(ti->isLoaded()){
         paintTrainingImage();
     }
+    paintAllHDSelected();
 }
 
 void GLWidget::resizeGL(int w, int h)

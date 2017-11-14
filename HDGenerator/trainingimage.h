@@ -22,6 +22,7 @@ public:
     int getActualDepth() const;
     int isLoaded() const;
     int getDepth() const;
+    int getFacie(int x, int y, int z);
     QString getFileName() const;
 
     //setting Functions

@@ -46,6 +46,13 @@ int TrainingImage::getDepth() const
     return depth;
 }
 
+int TrainingImage::getFacie(int x, int y, int z)
+{
+    int value = x + ((getHeight() - y) * getWidth()) + ( (z) * (getWidth() * getHeight()) );
+
+    return matrix->at(value);
+}
+
 QString TrainingImage::getFileName() const
 {
     return file;

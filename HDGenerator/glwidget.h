@@ -31,6 +31,10 @@ public:
     void setTrainingImage(TrainingImage *ti);
     void setHardData(HardData *hd);
     void mouseMoveEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    void paintHDSelected(int f, int coordx, int coordy);
+    void paintAllHDSelected();
+
 
     bool isCircleSelection();
     void setIsCircleSelection(bool selected);

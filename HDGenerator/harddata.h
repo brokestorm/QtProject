@@ -4,6 +4,7 @@
 #include <vector>
 #include <utility>
 #include <cstdio>
+#include <QDebug>
 
 class HardData
 {
