@@ -48,7 +48,7 @@ int TrainingImage::getDepth() const
 
 int TrainingImage::getFacie(int x, int y, int z)
 {
-    int value = x + ((getHeight() - y) * getWidth()) + ( (z) * (getWidth() * getHeight()) );
+    int value = x + ((getHeight() - (y + 1)) * getWidth()) + ( (z) * (getWidth() * getHeight()) );
 
     return matrix->at(value);
 }

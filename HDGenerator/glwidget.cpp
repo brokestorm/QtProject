@@ -3,7 +3,7 @@
 GLWidget::GLWidget(QWidget *parent) :
 QOpenGLWidget(parent)
 {
-    setIsCircleSelection(true);
+
 }
 
 void GLWidget::paintTrainingImage()
@@ -56,7 +56,7 @@ void GLWidget::mouseReleaseEvent(QMouseEvent *event)
         paintHDSelected(f, coordx, coordy);
         hd->add(f, coordx, coordy);
         //qDebug() << "number of hd: " << hd->getAmount();
-        //qDebug() << "facie selected: " << f;
+        qDebug() << "facie selected: " << f;
 
     }
 
@@ -83,16 +83,6 @@ void GLWidget::paintAllHDSelected()
         paintHDSelected(*et, (*it).first, (*it).second);
     }
 
-}
-
-bool GLWidget::isCircleSelection()
-{
-    return _isCircleSelection;
-}
-
-void GLWidget::setIsCircleSelection(bool selected)
-{
-    _isCircleSelection = selected;
 }
 
 void GLWidget::initializeGL()

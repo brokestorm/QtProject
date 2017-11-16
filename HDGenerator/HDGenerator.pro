@@ -30,7 +30,8 @@ SOURCES += \
     inputdialog.cpp \
     trainingimage.cpp \
     loadingdialog.cpp \
-    harddata.cpp
+    harddata.cpp \
+    perspective.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     inputdialog.h \
     trainingimage.h \
     loadingdialog.h \
-    harddata.h
+    harddata.h \
+    perspective.h
 
 FORMS += \
         mainwindow.ui \

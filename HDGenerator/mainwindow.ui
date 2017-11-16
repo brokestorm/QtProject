@@ -49,6 +49,16 @@
        </widget>
       </item>
       <item>
+       <widget class="Perspective" name="openGLWidget_2">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>100</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <property name="spacing">
          <number>6</number>
@@ -201,6 +211,11 @@
    <class>GLWidget</class>
    <extends>QOpenGLWidget</extends>
    <header>glwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Perspective</class>
+   <extends>QOpenGLWidget</extends>
+   <header>perspective.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

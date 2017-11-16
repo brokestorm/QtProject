@@ -27,28 +27,25 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions
 public:
 
     explicit GLWidget(QWidget *parent);
-    void paintTrainingImage();
+
     void setTrainingImage(TrainingImage *ti);
     void setHardData(HardData *hd);
-    void mouseMoveEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
+
+private:
+    void paintTrainingImage();
     void paintHDSelected(int f, int coordx, int coordy);
     void paintAllHDSelected();
 
-
-    bool isCircleSelection();
-    void setIsCircleSelection(bool selected);
-
-private:
     TrainingImage *ti;
     HardData *hd;
-    bool _isCircleSelection;
     QPoint cursor;
 
 protected:
     void initializeGL() Q_DECL_OVERRIDE;
     void paintGL() Q_DECL_OVERRIDE;
     void resizeGL(int w, int h) Q_DECL_OVERRIDE;
+    void mouseMoveEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
 };
 
 #endif // GLWIDGET_H
